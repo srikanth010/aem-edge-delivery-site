@@ -1,4 +1,4 @@
-import { getMetadata } from '../../scripts/aem.js';
+import { getMetadata, toClassName } from '../../scripts/aem.js';
 import { loadFragment } from '../fragment/fragment.js';
 
 // media query match that indicates mobile/tablet width
@@ -131,11 +131,19 @@ export default async function decorate(block) {
   });
 
   const navBrand = nav.querySelector('.nav-brand');
-  const brandLink = navBrand.querySelector('.button');
-  if (brandLink) {
-    brandLink.className = '';
-    brandLink.closest('.button-container').className = '';
-  }
+  navBrand.innerHTML = ''; // Clear the boilerplate link
+  const logo = document.createElement('div');
+  logo.className = 'default-content-wrapper';
+  logo.innerHTML = `
+    <div>
+      <a href="/">
+        <img src="https://corporate.wyndhamhotels.com/wp-content/uploads/2018/05/logo-blue-1.png" alt="logo">
+      </a>
+    </div>
+  `;
+  const logoWrapper = logo.firstElementChild;
+  logoWrapper.className = toClassName('logo-wrapper');
+  nav.querySelector('.nav-brand').append(logoWrapper);
 
   const navSections = nav.querySelector('.nav-sections');
   if (navSections) {
