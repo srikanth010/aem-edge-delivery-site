@@ -1,3 +1,7 @@
 mountpoints:
    /: https://drive.google.com/drive/folders/1GXjxocVuFZJ5vJ63IdCBFw52uDP4qXgp
-   
+
+access:
+  admin:
+    - srikanth010
+    - kanthetisrikanth0@gmail.com
